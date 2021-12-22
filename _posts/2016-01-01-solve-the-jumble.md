@@ -3,7 +3,7 @@ layout: post
 title:  "Solve the Jumble!"
 ---
 
-		<p><b>Solve the Jumble!</b></p>
+# Solve the Jumble!
                 <p>Ah yes.  The weighty problem of solving the Jumble in the daily paper.  This is usually an easy puzzle
 		to solve, although when your mind gets "jumble-blocked", it can tend to stay that way for a while.</p>
 		
