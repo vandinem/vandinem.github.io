@@ -4,24 +4,13 @@ title:  "Solve the Jumble!"
 ---
 
 # Solve the Jumble!
-Ah yes.  The weighty problem of solving the Jumble in the daily paper.  This is usually an easy puzzle to solve, although when your mind gets "jumble-blocked", it can tend to stay that way.
+Ah yes.  The weighty problem of solving the Jumble in the daily paper. This is usually an easy puzzle to solve, although when your mind gets "jumble-blocked", it can tend to stay that way.
 		
-		<p>In the &quot;Jumble&quot; puzzles (copyrighted by David L. Hoyt) the challenge is to unscramble a set
-		of words.&nbsp; The individual words are usually 5 to 8 characters long.  In the official puzzle, selected
-		letters from the individual answers are unscramble to provide the punchline to a horrific pun.</p>
+In the &quot;Jumble&quot; puzzles (copyrighted by David L. Hoyt) the challenge is to unscramble a set of words.  The individual words are usually 5 to 8 characters long.  In the official puzzle, selected letters from the individual answers are unscramble to provide the punchline to a horrific pun.
 		
-		<table style="border: 1px solid #DADAE3;" align="center">
-		    <tr><td>
-		
-		    <table align="center" width="100%"><tr><td><form name="form1" method="post" action="/jumble_solver.php"><div align="center"><strong>Enter 'Jumbled' word:</strong></div><BR/><div align="center"><input name="scrambled" type="text" style="width: 80px; padding: 2px; border: 1px solid black" value="elbmuj"><input type="submit" name="Submit" value="Unscramble!"></div></form></td></tr></table>		    
-		    </td></tr>
-		</table>
-		
-		<p><b>How to Solve It</b></p>
-		
-		<p>The human brain seems to be particularly gifted at doing this.  Many solvers have had the experience
-		of having the unscrambled answer for each word pop right into their head after a quick glance.&nbsp; This is followed
-		by a short burst of intellectual smugness and fantasies about accepting the Nobel Prize for Extreme Cleverness.</p>
+## How to Solve It
+
+The human brain seems to be particularly gifted at doing this.  Many solvers have had the experience of having the unscrambled answer for each word pop right into their head after a quick glance.&nbsp; This is followed by a short burst of intellectual smugness and fantasies about accepting the Nobel Prize for Extreme Cleverness.
 		
 		<p>And yet, sometimes the unscrambling process stumbles and the letters just stare back at you, defiantly scrambled.&nbsp;
 		At that point any number of tricks to jump-start the puzzle-solving process might work. Simple tactics like reversing
