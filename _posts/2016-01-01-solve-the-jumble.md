@@ -54,5 +54,4 @@
 		
 		<p>I replaced the list with a call to a MySQL table of dictionary words and their corresponding 'signed' versions, and
 		that made for a simpler and much faster script.</p>
-	    
-	        </span>
+	
