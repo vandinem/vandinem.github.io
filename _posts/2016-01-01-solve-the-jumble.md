@@ -4,8 +4,7 @@ title:  "Solve the Jumble!"
 ---
 
 # Solve the Jumble!
-                <p>Ah yes.  The weighty problem of solving the Jumble in the daily paper.  This is usually an easy puzzle
-		to solve, although when your mind gets "jumble-blocked", it can tend to stay that way for a while.</p>
+Ah yes.  The weighty problem of solving the Jumble in the daily paper.  This is usually an easy puzzle to solve, although when your mind gets "jumble-blocked", it can tend to stay that way.
 		
 		<p>In the &quot;Jumble&quot; puzzles (copyrighted by David L. Hoyt) the challenge is to unscramble a set
 		of words.&nbsp; The individual words are usually 5 to 8 characters long.  In the official puzzle, selected
