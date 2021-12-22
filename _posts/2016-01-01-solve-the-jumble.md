@@ -1,4 +1,8 @@
-<span style="font-family: Verdana, Arial, sans-serif;font-size: 0.80em;padding:20px 20px 20px 20px;float: left;">
+---
+layout: post
+title:  "Solve the Jumble!"
+---
+
 		<p><b>Solve the Jumble!</b></p>
                 <p>Ah yes.  The weighty problem of solving the Jumble in the daily paper.  This is usually an easy puzzle
 		to solve, although when your mind gets "jumble-blocked", it can tend to stay that way for a while.</p>
