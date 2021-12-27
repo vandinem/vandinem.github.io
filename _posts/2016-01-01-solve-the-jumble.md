@@ -20,10 +20,10 @@ To unscramble the individual words, the essay describes this central trick: sort
 
 For example, say that one of our scrambled puzzle words is "lorac". We sort the letters into alphabetical order to obtain "aclor". Then we search our dictionary for any five-letter words that also sorted to the pattern "aclor". (I used a list of about 100,000 words and found four solutions:
 
-1 calor
-2 carlo
-3 carol
-4 coral
+1. calor
+2. carlo
+3. carol
+4. coral
 
 The final script used in this page is written in PHP and is fairly short and simple:</p>
 		<ol>
