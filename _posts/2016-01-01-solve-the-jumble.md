@@ -17,13 +17,15 @@ And yet, sometimes the unscrambling process stumbles and the letters just stare 
 This is a fun Comp Sci 101 exercise because of how inventive people can be at finding difficult solutions. On the other hand, if you identify the elegant, simplifying hack (or, well, have it explained to you ... I'm not proud) it can take your own personal smugness to all new levels.  In this case, the clever hack is described by Jon Bentley in the "Aha! Algorithms" essay from his book [Programming Pearls](https://bookshop.org/books/programming-pearls/9780201657883).
 
 To unscramble the individual words, the essay describes this central trick: sort the letters of the scrambled word into alphabetical order. Then compare this sorted arrangement of letters with a dictionary of words processed the same way (an alphabetical list of words each paired with a version of itself with its letters sorted alphabetically).
-		
-		<p>For example, say that one of our scrambled puzzle words is &quot;lorac&quot;. We sort the letters into alphabetical
-		order to obtain &quot;aclor&quot;. We then search our dictionary for any five-letter words that also sorted to the
-		pattern &quot;aclor&quot;. (I used a list of about 100,000 words and found four solutions: &quot;calor&quot;,
-		&quot;carlo&quot;, &quot;carol&quot;, and &quot;coral&quot;)</p>
-		
-		<p>The final script used in this page is written in PHP and is fairly short and simple:</p>
+
+For example, say that one of our scrambled puzzle words is "lorac". We sort the letters into alphabetical order to obtain "aclor". Then we search our dictionary for any five-letter words that also sorted to the pattern "aclor". (I used a list of about 100,000 words and found four solutions:
+
+1 calor
+2 carlo
+3 carol
+4 coral
+
+The final script used in this page is written in PHP and is fairly short and simple:</p>
 		<ol>
 		    <li>Collect a scrambled word from the form</li>
 		    <li>Lowercase the word, then create and save a 'signed' version of it.</li>
