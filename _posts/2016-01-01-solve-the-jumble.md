@@ -25,18 +25,14 @@ For example, say that one of our scrambled puzzle words is "lorac". We sort the 
 3. carol
 4. coral
 
-The final script used in this page is written in PHP and is fairly short and simple:</p>
-		<ol>
-		    <li>Collect a scrambled word from the form</li>
-		    <li>Lowercase the word, then create and save a 'signed' version of it.</li>
-		    <li>Load the contents of the 'squashed' file into an array</li>
-		    <li>Go through the array looking for a match for the 'signed' version of the scrambled word</li>
-		    <li>Display the answer (if any) and prep the page for another try.</li>
-		</ol>
-		
-		<p>As mentioned, that worked, but it wasn't very fast the first time I wrote it because of the time needed to load
-		the word list (100,000 lines long).  And then I had a linear search through the list, etc.  Not efficient.</p>
-		
-		<p>I replaced the list with a call to a MySQL table of dictionary words and their corresponding 'signed' versions, and
-		that made for a simpler and much faster script.</p>
-	
+The final script used in this page is written in PHP and is fairly short and simple:
+
+1. Collect a scrambled word from the form<
+2. Lowercase the word, then create and save a 'signed' version of it.
+3. Load the contents of the 'squashed' file into an array
+4.Go through the array looking for a match for the 'signed' version of the scrambled word
+5. Display the answer (if any) and prep the page for another try.
+
+As mentioned, that worked, but it wasn't very fast the first time I wrote it because of the time needed to load the word list (100,000 lines long).  And then I had a linear search through the list, etc.  Not efficient.
+
+I replaced the list with a call to a MySQL table of dictionary words and their corresponding 'signed' versions, and that made for a simpler and much faster script.
