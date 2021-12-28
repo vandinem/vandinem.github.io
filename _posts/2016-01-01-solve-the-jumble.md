@@ -18,12 +18,11 @@ This is a fun Comp Sci 101 exercise because of how inventive people can be at fi
 
 To unscramble the individual words, the essay describes this central trick: sort the letters of the scrambled word into alphabetical order. Then compare this sorted arrangement of letters with a dictionary of words processed the same way (an alphabetical list of words each paired with a version of itself with its letters sorted alphabetically).
 
-For example, say that one of our scrambled puzzle words is "lorac". We sort the letters into alphabetical order to obtain "aclor". Then we search our dictionary for any five-letter words that also sorted to the pattern "aclor". (I used a list of about 100,000 words and found four solutions:
+For example, say that one of our scrambled puzzle words is "lorac". We sort the letters into alphabetical order to obtain "aclor". Then we search our dictionary for any five-letter words that also sorted to the pattern "aclor". (I used a list of 10,000 words and found three solutions:
 
-1. calor
-2. carlo
-3. carol
-4. coral
+1. carlo
+2. carol
+3. coral
 
 The final script used in this page is written in PHP and is fairly short and simple:
 
