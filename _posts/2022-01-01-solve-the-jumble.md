@@ -153,6 +153,8 @@ while True:
 
 Or copy the puzzlewords.sqlite file into your PHP web site, and you can use an HTML form to interact with it. (No doubt something similar will work with Javascript, coding language of the damned.)  For PHP, make sure that the sqlite interface is installed ( I did this with `sudo apt-get install php7.4-sqlite`).
 
+###jumble.php
+
 ```php
 <!DOCTYPE HTML>
 <html lang="en">
@@ -180,11 +182,7 @@ Or copy the puzzlewords.sqlite file into your PHP web site, and you can use an H
 
 	<?php
 
-	    // echo "Hello!<BR/>"; foreach ( $_POST as $key => $value ) {echo "<p>" . $key . ", ". $value . "</p><HR />";}
-
-		if ( isset( $_POST[ "scrambled" ] ) && ( strlen( $_POST[ "scrambled" ] ) > 0 ) ) {
-
-			# print "I am here! [" . $_POST[ "scrambled" ] . "]<BR/>";
+	    if ( isset( $_POST[ "scrambled" ] ) && ( strlen( $_POST[ "scrambled" ] ) > 0 ) ) {
 			
 			process_jumble( $_POST[ "scrambled" ], 1 );
 			
