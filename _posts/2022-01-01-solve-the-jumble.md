@@ -153,7 +153,7 @@ while True:
 
 Or copy the puzzlewords.sqlite file into your PHP web site, and you can use an HTML form to interact with it. (No doubt something similar will work with Javascript, coding language of the damned.)  For PHP, make sure that the sqlite interface is installed ( I did this with `sudo apt-get install php7.4-sqlite`).
 
-###jumble.php
+### jumble.php
 
 ```php
 <!DOCTYPE HTML>
