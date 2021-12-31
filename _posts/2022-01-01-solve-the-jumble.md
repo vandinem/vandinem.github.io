@@ -33,7 +33,7 @@ In my latest implementation of this, I decided to first create my reference word
 
 ### wordlistsql.py
 
-```python
+``` python
 
 import urllib.request
 import sqlite3
