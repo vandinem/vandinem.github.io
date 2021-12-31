@@ -4,25 +4,100 @@ title:  "Solve the Jumble!"
 ---
 
 # Solve the Jumble!
-Ah yes.  The weighty problem of solving the Jumble in the daily paper. This is usually an easy puzzle to solve, although when your mind gets "jumble-blocked", it can tend to stay that way.
+The &quot;Jumble&quot; puzzle (copyrighted by [David L. Hoyt](https://www.davidlhoyt.com/)) is usually easy to solve, although when your mind gets "jumble-blocked", it can tend to stay that way.
 		
-In the &quot;Jumble&quot; puzzles (copyrighted by David L. Hoyt) the challenge is to unscramble a set of words.  The individual words are usually 5 to 8 characters long.  In the official puzzle, selected letters from the individual answers are unscramble to provide the punchline to a horrific pun.
+The challenge is to unscramble a set of words.  The individual words are usually 5 to 8 characters long.  In the official puzzle, selected letters from the individual answers unscramble to provide the punchline to a dependably horrific pun.
 		
 ## How to Solve It
 
-The human brain seems to be particularly gifted at doing this.  Many solvers have had the experience of having the unscrambled answer for each word pop right into their head after a quick glance.&nbsp; This is followed by a short burst of intellectual smugness and fantasies about accepting the Nobel Prize for Extreme Cleverness.
+The Jumble is a satisfying puzzle. With a little focus, the answer usually comes easily.  Many solvers have had the experience of having the unscrambled answer for each word pop right into their head after a quick glance.
 
-And yet, sometimes the unscrambling process stumbles and the letters just stare back at you, defiantly scrambled. At that point any number of tricks to jump-start the puzzle-solving process might work. Simple tactics like reversing	the scrambled letters and giving your brain another go, or heuristics like looking for common groupings of letters ('th', 'ing', etc.) in order to simplify the number of combinations to consider.
+But sometimes the unscrambling process stumbles and the letters just stare back at you, defiantly scrambled. At that point any number of tricks to jump-start the puzzle-solving process might work. Simple tactics like reversing the scrambled letters, or looking for common letter groupings ('th', 'ing', etc.) ... reorder or simplify the problem.
 
-This is a fun Comp Sci 101 exercise because of how inventive people can be at finding difficult solutions. On the other hand, if you identify the elegant, simplifying hack (or, well, have it explained to you ... I'm not proud) it can take your own personal smugness to all new levels.  In this case, the clever hack is described by Jon Bentley in the "Aha! Algorithms" essay from his book [Programming Pearls](https://bookshop.org/books/programming-pearls/9780201657883).
+This is a fun Comp Sci 101 exercise because of how inventive people can be at finding difficult solutions. Generating lots of letter permutations and look-ups is an invitation to inefficiency and slow going.
 
-To unscramble the individual words, the essay describes this central trick: sort the letters of the scrambled word into alphabetical order. Then compare this sorted arrangement of letters with a dictionary of words processed the same way (an alphabetical list of words each paired with a version of itself with its letters sorted alphabetically).
+On the other hand, if you identify a clever transformation (or, well, have it explained to you ... I'm not proud) the resulting script is elegant and fast.
 
-For example, say that one of our scrambled puzzle words is "lorac". We sort the letters into alphabetical order to obtain "aclor". Then we search our dictionary for any five-letter words that also sorted to the pattern "aclor". (I used a list of 10,000 words and found three solutions:
+In this case, the clever hack is described by Jon Bentley in the "Aha! Algorithms" essay from his book [Programming Pearls](https://bookshop.org/books/programming-pearls/9780201657883).
+
+To unscramble the individual words, sort the letters of the scrambled word into alphabetical order. Then compare this sorted arrangement of letters with a dictionary of words processed the same way (an alphabetical list of words each paired with a version of itself with its letters sorted alphabetically).
+
+For example, say that one of our scrambled puzzle words is "lorac". We sort the letters into alphabetical order to obtain "aclor". Then we search our dictionary for any five-letter words that also sorted to the pattern "aclor". From a list of 10,000 words I found three solutions:
 
 1. carlo
 2. carol
 3. coral
+
+In my latest implementation of this, I decided to first create my reference word list as a SQLite file.  This has the advantages of being fast, and deployable in lots of environments.
+
+```
+import urllib.request
+import sqlite3
+
+# --------------------------------------------------------------------
+# Get a sqlite table ready for data
+
+database = "./puzzlewords.sqlite"
+  
+try:
+	conn = sqlite3.connect( database )
+except Error as e:
+	print( e )
+	exit()
+	
+cursor = conn.cursor()
+
+# Creating table
+table = """CREATE TABLE IF NOT EXISTS wordlist( word VARCHAR( 30 ), sorted VARCHAR( 30 ), UNIQUE( word, sorted ) );"""
+cursor.execute( table )
+
+# --------------------------------------------------------------------
+# Get the words at https://www.mit.edu/~ecprice/wordlist.10000, and store
+# each word and its sorted version in our sqlite table.
+
+# url  = "https://www.mit.edu/~ecprice/wordlist.10000"
+url  = "http://www-personal.umich.edu/~jlawler/wordlist"
+file = urllib.request.urlopen( url )
+
+maxlen = 0;
+
+ctr = 0
+
+for line in file:
+	decoded_line = line.decode( "utf-8" )
+	
+	if ( decoded_line[ 0 ] == '#' ): # skip comments
+		continue
+	
+	word = decoded_line.rstrip()
+	word = word.lower()
+	
+	letters  = list( word )
+	
+	sortword = "" . join( sorted( letters ) )
+	
+	# print( f"{ word }, { sortword }" )
+	
+	try:
+		cursor.execute( "INSERT OR IGNORE INTO wordlist ( word, sorted ) VALUES ( ?, ? );", ( word, sortword ) )
+	except:
+		print( f"Failed INSERT to wordlist (DB open in browser?): { word }, { sortword }" )
+		conn.close()
+		exit()
+	
+	if ( len( word ) > maxlen ):
+		maxlen = len( word )
+		
+	ctr = ctr + 1
+
+
+conn.commit()
+
+conn.close()
+	
+print( f"Read the page and found { ctr } words and max length is { maxlen }" )
+
+```
 
 The final script used in this page is written in PHP and is fairly short and simple:
 
