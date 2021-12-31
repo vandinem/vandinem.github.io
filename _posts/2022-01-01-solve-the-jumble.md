@@ -215,6 +215,8 @@ Or copy the puzzlewords.sqlite file into your PHP web site, and you can use an H
 			}
 			else {
 				
+				print "<BR/>";
+				
 				for ( $i = 0;$i < $ctr;$i++ ) {
 					
 					print ( $i + 1 ) . ": <strong>$wordlist[$i]</strong><BR/>";
