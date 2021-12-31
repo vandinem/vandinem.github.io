@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Solve the Jumble!"
+tags: [puzzles, python, sqlite, php, sql]
 ---
 
 # Solve the Jumble!
