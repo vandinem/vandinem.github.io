@@ -32,8 +32,7 @@ For example, say that one of our scrambled puzzle words is "lorac". We sort the 
 In my latest implementation of this, I decided to first create my reference word list as a SQLite file.  This has the advantages of being fast, and deployable in lots of environments.  The following Python script creates the SQLite file 'puzzlewords' which includes the table 'wordlist'.  I identify a couple of URLs with useful English word lists to process. (The 10,000 word lists often overlook words that seem common enough; 100,000 word lists often contain unusable noise):
 
 ### wordlistsql.py
-
-``` python
+<pre><code class="language-python">
 
 import urllib.request
 import sqlite3
@@ -100,5 +99,4 @@ conn.commit()
 conn.close()
 	
 print( f"Read the page and found { ctr } words and max length is { maxlen }" )
-
-```
+</code></pre>
