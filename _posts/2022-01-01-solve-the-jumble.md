@@ -33,7 +33,6 @@ In my latest implementation of this, I decided to first create my reference word
 
 ### wordlistsql.py
 <pre><code class="language-python">
-
 import urllib.request
 import sqlite3
 
@@ -99,4 +98,53 @@ conn.commit()
 conn.close()
 	
 print( f"Read the page and found { ctr } words and max length is { maxlen }" )
+</code></pre>
+
+With this database available, we can write a terminal script for solving words:
+
+### jumble.py
+<pre><code class="language-python">
+import sqlite3
+import re
+
+database = "./puzzlewords.sqlite"
+  
+try:
+	conn = sqlite3.connect( database )
+except Error as e:
+	print( e )
+	exit()
+	
+cursor = conn.cursor()
+
+while True:
+	
+	str = input( "\nEnter a Jumble word? " )
+	
+	str = str.lower()
+	
+	if ( str == 'q' ):
+		print( "\n" )
+		break
+	else:
+		
+		str = re.findall("[\da-z]*", str)[0]
+		
+		letters  = list( str )
+		
+		str = "" . join( sorted( letters ) )
+		
+		if ( len( str ) < 3 ):
+			print( "Come on guy ... at least three letters?" )
+		
+		cursor.execute( f"SELECT word FROM wordlist WHERE sorted = '{ str }'" )
+		
+		rows = cursor.fetchall()
+		
+		if ( len( rows ) == 0 ):
+			print( "No solutions found!" )
+			continue
+		
+		for row in rows:
+			print( f"{ row[ 0 ] }" )
 </code></pre>
