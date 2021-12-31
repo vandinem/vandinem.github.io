@@ -28,7 +28,7 @@ For example, say that one of our scrambled puzzle words is "lorac". We sort the 
 2. carol
 3. coral
 
-In my latest implementation of this, I decided to first create my reference word list as a SQLite file.  This has the advantages of being fast, and deployable in lots of environments.
+In my latest implementation of this, I decided to first create my reference word list as a SQLite file.  This has the advantages of being fast, and deployable in lots of environments.  The following Python script creates the SQLite file 'puzzlewords' which includes the table 'wordlist'.  I identify a couple of URLs with useful English word lists to process. (The 10,000 word lists often overlook words that seem common enough; 100,000 word lists often contain unusable noise):
 
 ```
 import urllib.request
@@ -99,14 +99,51 @@ print( f"Read the page and found { ctr } words and max length is { maxlen }" )
 
 ```
 
-The final script used in this page is written in PHP and is fairly short and simple:
+With this database available, we can write a terminal script for solving words:
 
-1. Collect a scrambled word from the form<
-2. Lowercase the word, then create and save a 'signed' version of it.
-3. Load the contents of the 'squashed' file into an array
-4.Go through the array looking for a match for the 'signed' version of the scrambled word
-5. Display the answer (if any) and prep the page for another try.
+```
+import sqlite3
+import re
 
-As mentioned, that worked, but it wasn't very fast the first time I wrote it because of the time needed to load the word list (100,000 lines long).  And then I had a linear search through the list, etc.  Not efficient.
+database = "./puzzlewords.sqlite"
+  
+try:
+	conn = sqlite3.connect( database )
+except Error as e:
+	print( e )
+	exit()
+	
+cursor = conn.cursor()
 
-I replaced the list with a call to a MySQL table of dictionary words and their corresponding 'signed' versions, and that made for a simpler and much faster script.
+while True:
+	
+	str = input( "\nEnter a Jumble word? " )
+	
+	str = str.lower()
+	
+	if ( str == 'q' ):
+		print( "\n" )
+		break
+	else:
+		
+		str = re.findall("[\da-z]*", str)[0]
+		
+		letters  = list( str )
+		
+		str = "" . join( sorted( letters ) )
+		
+		if ( len( str ) < 3 ):
+			print( "Come on guy ... at least three letters?" )
+		
+		cursor.execute( f"SELECT word FROM wordlist WHERE sorted = '{ str }'" )
+		
+		rows = cursor.fetchall()
+		
+		if ( len( rows ) == 0 ):
+			print( "No solutions found!" )
+			continue
+		
+		for row in rows:
+			print( f"{ row[ 0 ] }" )
+```
+
