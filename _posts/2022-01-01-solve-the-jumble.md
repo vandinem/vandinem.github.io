@@ -149,110 +149,111 @@ while True:
 			print( f"{ row[ 0 ] }" )
 </code></pre>
 
-Or copy the puzzlewords.sqlite file into your PHP web site, and you can use an HTML form to interact with it. (No doubt something similar will work with Javascript, coding language of the damned.)  For PHP, make sure that the sqlite interface is installed ( I did this with `sudo apt-get install php7.4-sqlite`).
+Or copy the puzzlewords.sqlite file into your PHP web site, and you can use an HTML form to interact with it. (No doubt something similar will work with Javascript, coding language of the damned.)  For PHP, make sure that the sqlite interface is installed.
 
 ### jumble.php
-<pre><code class="language-php">
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <title>Solve the Jumble</title>
-</head>
-<body>
-	
-    <form name="form1" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
-		<strong>Enter 'Jumbled' word:</strong><BR/>
-		
-		<input 
-			name="scrambled" 
-			type="text" 
-			style="width: 80px; padding: 2px; border: 1px solid black" 
-			value="<?php echo $scrambled; ?>"
-		>
-		<input 
-			type="submit" 
-			name="Submit" 
-			value="Unscramble!"
-		>
 
-	</form>
+	<pre><code class="language-php">
+	<!DOCTYPE HTML>
+	<html lang="en">
+	<head>
+	    <title>Solve the Jumble</title>
+	</head>
+	<body>
 
-	<?php
+	    <form name="form1" method="post" action="<?php echo $_SERVER["PHP_SELF"]; ?>">
+			<strong>Enter 'Jumbled' word:</strong><BR/>
 
-	    if ( isset( $_POST[ "scrambled" ] ) && ( strlen( $_POST[ "scrambled" ] ) > 0 ) ) {
-			
-			process_jumble( $_POST[ "scrambled" ], 1 );
-			
-		}
-		else {
-			
-			jumble_form( "elbmuj" , 0 );
-		
-		}
+			<input 
+				name="scrambled" 
+				type="text" 
+				style="width: 80px; padding: 2px; border: 1px solid black" 
+				value="<?php echo $scrambled; ?>"
+			>
+			<input 
+				type="submit" 
+				name="Submit" 
+				value="Unscramble!"
+			>
 
-	?>
-    
-</body>
-</html>
+		</form>
 
-<?php 
+		<?php
 
-	function jumble_form( $scrambled, $flag ) {
-			
-		global $wordlist;
-		
-		if ( $flag ) {
-			
-			$ctr = count( $wordlist );
-			
-			if ( isset( $_POST[ "scrambled" ] ) && ( $ctr == 0 ) ) {
-				
-				print "<strong>Nothing found!</strong><BR>";
-				
+		    if ( isset( $_POST[ "scrambled" ] ) && ( strlen( $_POST[ "scrambled" ] ) > 0 ) ) {
+
+				process_jumble( $_POST[ "scrambled" ], 1 );
+
 			}
 			else {
-				
-				print "<BR/>";
-				
-				for ( $i = 0;$i < $ctr;$i++ ) {
-					
-					print ( $i + 1 ) . ": <strong>$wordlist[$i]</strong><BR/>";
-					
-				}
-				
+
+				jumble_form( "elbmuj" , 0 );
+
 			}
-			
+
+		?>
+
+	</body>
+	</html>
+
+	<?php 
+
+		function jumble_form( $scrambled, $flag ) {
+
+			global $wordlist;
+
+			if ( $flag ) {
+
+				$ctr = count( $wordlist );
+
+				if ( isset( $_POST[ "scrambled" ] ) && ( $ctr == 0 ) ) {
+
+					print "<strong>Nothing found!</strong><BR>";
+
+				}
+				else {
+
+					print "<BR/>";
+
+					for ( $i = 0;$i < $ctr;$i++ ) {
+
+						print ( $i + 1 ) . ": <strong>$wordlist[$i]</strong><BR/>";
+
+					}
+
+				}
+
+			}
+
 		}
 
-	}
+		function process_jumble( $scrambledStr ) {
 
-	function process_jumble( $scrambledStr ) {
-		
-		global $wordlist;
+			global $wordlist;
 
-        $db = new SQLite3( './puzzlewords.sqlite', SQLITE3_OPEN_READONLY);
-		
-		$wordlist = array();
+		$db = new SQLite3( './puzzlewords.sqlite', SQLITE3_OPEN_READONLY);
 
-		$chars  = str_split( strtolower( $scrambledStr ) );
-            
-        sort( $chars );
-            
-        $sorted = join( "", $chars );
-		
-		// Get any rows from the wordlist with a matching 'sorted' key
-		
-		$res = $db -> query( "SELECT word FROM wordlist WHERE sorted=\"$sorted\" ORDER BY word" );
+			$wordlist = array();
 
-		while ( $row = $res -> fetchArray() ) {
-			
-			$wordlist[] = $row[ 0 ];
-			
-		}
-		
-	} 
-	
-	jumble_form( $scrambledStr, 1 );
-	
-?>
-</code></pre>
+			$chars  = str_split( strtolower( $scrambledStr ) );
+
+		sort( $chars );
+
+		$sorted = join( "", $chars );
+
+			// Get any rows from the wordlist with a matching 'sorted' key
+
+			$res = $db -> query( "SELECT word FROM wordlist WHERE sorted=\"$sorted\" ORDER BY word" );
+
+			while ( $row = $res -> fetchArray() ) {
+
+				$wordlist[] = $row[ 0 ];
+
+			}
+
+		} 
+
+		jumble_form( $scrambledStr, 1 );
+
+	?>
+	</code></pre>
