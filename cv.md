@@ -3,15 +3,16 @@
 
 _Senior Business Intelligence Analyst based in Boston, MA, USA_ <br>
 
-[Email](mailto:mark.vandine@gmail.com) / [Website](https://workwithcarolyn.com/) / [LinkedIn](https://www.linkedin.com/in/mark-van-dine-807805/) / [GitHub](https://github.com/vandinem/) / [Twitter](https://twitter.com/carolstran/)
+[Email](mailto:mark.vandine@gmail.com) / [Website](https://workwithcarolyn.com/) / [LinkedIn](https://www.linkedin.com/in/mark-van-dine-807805/) / [GitHub](https://github.com/vandinem/) / [Twitter](https://twitter.com/vandinem/)
 
-## 👩🏼‍💻 Technical Experience
+## 👩🏼‍💻 FinTech Experience
 
-**Frontend Engineer** @ [BRYTER](https://bryter.io/) _(Dec 2020 - Present)_ <br>
-No-code platform that enables professionals to build interactive applications.
-  - Implementing features that improve the UI and accessibility of the integrations platform
-  - Extending a company-wide design system
-  - **_Technologies used:_** Vue, TypeScript, Jest, Testing Library, HTML, CSS, Sass, Web Components (LitElement).
+**Business Intelligence/Business Analyst/Product Manager** @ [Pragmatic Research LLC]() _(July 2021 - Present)_ <br>
+The LLC I set up after accepting Fidelity's Voluntary Buyout.  Project and Contract work in:
+  - Business Intelligence (solving business, compliance, risk and finance data problems)
+  - Migration of legacy software to current tech
+  - Automation of Business Process
+  - **_Technologies used:_** Oracle, Sybase, SQLite, and MySQL;Python, Perl, and PHP; Tableau
 <br><br>
 
 **Google Season of Docs 2020 | Technical Writer** @ [GraphQL Foundation](https://foundation.graphql.org/) _(Aug 2020 - Jan 2021)_ <br>
@@ -145,15 +146,9 @@ Created [Qarma](https://github.com/lcorr8/qarma), an online platform to report a
 
 ## 👩🏼‍🎓 Education
 
-**12-week intensive coding course** focused on full-stack JavaScript<br>
-[SPICED Academy](https://www.spiced-academy.com/) - Berlin, Germany _(Apr 2017 - Jun 2017)_ <br>
+**MBA - Quantitative Analysis** focused on statistics and econometrics<br>
+[The Pennsylvania State University](https://www.psu.edu/) - University Park, PA _(Sep 1978 - Nov 1979)_ <br>
 
-**Bachelor of Arts** in Journalism and Media Studies<br>
-[Beloit College](https://www.beloit.edu/) - Beloit, Wisconsin, USA _(2011 - 2015)_
-
-**Washington Semester Program** for Journalism and New Media<br>
-[American University](https://www.american.edu/) - Washington DC, USA _(Fall 2014)_
-
-**International Exchange** studying Political Science<br>
-[Yeditepe Üniversitesi](https://yeditepe.edu.tr/en) - Istanbul, Turkey _(Spring 2013)_
+**Bachelor of Arts** in Mathematics and Applied Sciences<br>
+[The Pennsylvania State University](https://www.psu.edu/) - University Park, PA _(Sep 1974 - Nov 1978)_ <br>
 
