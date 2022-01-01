@@ -29,7 +29,9 @@ For example, say that one of our scrambled puzzle words is "lorac". We sort the 
 2. carol
 3. coral
 
-In my latest implementation of this, I decided to first create my reference word list as a SQLite file.  This has the advantages of being fast, and deployable in lots of environments.  The following Python script creates the SQLite file 'puzzlewords' which includes the table 'wordlist'.  I identify a couple of URLs with useful English word lists to process. (The 10,000 word lists often overlook words that seem common enough; 100,000 word lists often contain unusable noise):
+In my latest implementation of this, I decided to first create my reference word list as a SQLite file.  This has the advantages of being fast, and deployable in lots of environments.  The following Python script creates the SQLite file 'puzzlewords' which includes the table 'wordlist'.  I identify a couple of URLs with useful English word lists to process. (The 10,000 word lists often overlook words that seem common enough; 100,000 word lists often contain unusable noise).
+
+(The repository [github.com/vandinem/jumble](https://github.com/vandinem/jumble) contains these code samples, as well as the SQLite file of words)
 
 ### wordlistsql.py
 
