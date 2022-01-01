@@ -2,7 +2,7 @@
 
 _Senior Business Intelligence Analyst based in Boston, MA, USA_ <br>
 
-[Email](mailto:mark.vandine@gmail.com) / [Website](https://workwithcarolyn.com/) / [LinkedIn](https://www.linkedin.com/in/mark-van-dine-807805/) / [GitHub](https://github.com/vandinem/) / [Twitter](https://twitter.com/vandinem/)
+[Email](mailto:mark.vandine@gmail.com) / [Website](https://vandinem.github.io/) / [LinkedIn](https://www.linkedin.com/in/mark-van-dine-807805/) / [GitHub](https://github.com/vandinem/) / [Twitter](https://twitter.com/vandinem/)
 
 ## 🏦 FinTech Experience
 
