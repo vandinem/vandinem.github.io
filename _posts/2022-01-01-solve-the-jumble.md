@@ -32,122 +32,126 @@ For example, say that one of our scrambled puzzle words is "lorac". We sort the 
 In my latest implementation of this, I decided to first create my reference word list as a SQLite file.  This has the advantages of being fast, and deployable in lots of environments.  The following Python script creates the SQLite file 'puzzlewords' which includes the table 'wordlist'.  I identify a couple of URLs with useful English word lists to process. (The 10,000 word lists often overlook words that seem common enough; 100,000 word lists often contain unusable noise):
 
 ### wordlistsql.py
-<pre><code class="language-python">
-import urllib.request
-import sqlite3
+```python
 
-# --------------------------------------------------------------------
-# Get a sqlite table ready for data
+	import urllib.request
+	import sqlite3
 
-database = "./puzzlewords.sqlite"
-  
-try:
-	conn = sqlite3.connect( database )
-except Error as e:
-	print( e )
-	exit()
-	
-cursor = conn.cursor()
+	# --------------------------------------------------------------------
+	# Get a sqlite table ready for data
 
-# Creating table
-table = """CREATE TABLE IF NOT EXISTS wordlist( word VARCHAR( 30 ), sorted VARCHAR( 30 ), UNIQUE( word, sorted ) );"""
-cursor.execute( table )
+	database = "./puzzlewords.sqlite"
 
-# --------------------------------------------------------------------
-# Get the words at https://www.mit.edu/~ecprice/wordlist.10000, and store
-# each word and its sorted version in our sqlite table.
-
-# url  = "https://www.mit.edu/~ecprice/wordlist.10000"
-url  = "http://www-personal.umich.edu/~jlawler/wordlist"
-file = urllib.request.urlopen( url )
-
-maxlen = 0;
-
-ctr = 0
-
-for line in file:
-	decoded_line = line.decode( "utf-8" )
-	
-	if ( decoded_line[ 0 ] == '#' ): # skip comments
-		continue
-	
-	word = decoded_line.rstrip()
-	word = word.lower()
-	
-	letters  = list( word )
-	
-	sortword = "" . join( sorted( letters ) )
-	
-	# print( f"{ word }, { sortword }" )
-	
 	try:
-		cursor.execute( "INSERT OR IGNORE INTO wordlist ( word, sorted ) VALUES ( ?, ? );", ( word, sortword ) )
-	except:
-		print( f"Failed INSERT to wordlist (DB open in browser?): { word }, { sortword }" )
-		conn.close()
+		conn = sqlite3.connect( database )
+	except Error as e:
+		print( e )
 		exit()
-	
-	if ( len( word ) > maxlen ):
-		maxlen = len( word )
-		
-	ctr = ctr + 1
+
+	cursor = conn.cursor()
+
+	# Creating table
+	table = """CREATE TABLE IF NOT EXISTS wordlist( word VARCHAR( 30 ), sorted VARCHAR( 30 ), UNIQUE( word, sorted ) );"""
+	cursor.execute( table )
+
+	# --------------------------------------------------------------------
+	# Get the words at https://www.mit.edu/~ecprice/wordlist.10000, and store
+	# each word and its sorted version in our sqlite table.
+
+	# url  = "https://www.mit.edu/~ecprice/wordlist.10000"
+	url  = "http://www-personal.umich.edu/~jlawler/wordlist"
+	file = urllib.request.urlopen( url )
+
+	maxlen = 0;
+
+	ctr = 0
+
+	for line in file:
+		decoded_line = line.decode( "utf-8" )
+
+		if ( decoded_line[ 0 ] == '#' ): # skip comments
+			continue
+
+		word = decoded_line.rstrip()
+		word = word.lower()
+
+		letters  = list( word )
+
+		sortword = "" . join( sorted( letters ) )
+
+		# print( f"{ word }, { sortword }" )
+
+		try:
+			cursor.execute( "INSERT OR IGNORE INTO wordlist ( word, sorted ) VALUES ( ?, ? );", ( word, sortword ) )
+		except:
+			print( f"Failed INSERT to wordlist (DB open in browser?): { word }, { sortword }" )
+			conn.close()
+			exit()
+
+		if ( len( word ) > maxlen ):
+			maxlen = len( word )
+
+		ctr = ctr + 1
 
 
-conn.commit()
+	conn.commit()
 
-conn.close()
-	
-print( f"Read the page and found { ctr } words and max length is { maxlen }" )
-</code></pre>
+	conn.close()
+
+	print( f"Read the page and found { ctr } words and max length is { maxlen }" )
+
+```
 
 With this database available, we can write a terminal script for solving words:
 
 ### jumble.py
-<pre><code class="language-python">
-import sqlite3
-import re
+```python
 
-database = "./puzzlewords.sqlite"
-  
-try:
-	conn = sqlite3.connect( database )
-except Error as e:
-	print( e )
-	exit()
-	
-cursor = conn.cursor()
+	import sqlite3
+	import re
 
-while True:
-	
-	str = input( "\nEnter a Jumble word? " )
-	
-	str = str.lower()
-	
-	if ( str == 'q' ):
-		print( "\n" )
-		break
-	else:
-		
-		str = re.findall("[\da-z]*", str)[0]
-		
-		letters  = list( str )
-		
-		str = "" . join( sorted( letters ) )
-		
-		if ( len( str ) < 3 ):
-			print( "Come on guy ... at least three letters?" )
-		
-		cursor.execute( f"SELECT word FROM wordlist WHERE sorted = '{ str }'" )
-		
-		rows = cursor.fetchall()
-		
-		if ( len( rows ) == 0 ):
-			print( "No solutions found!" )
-			continue
-		
-		for row in rows:
-			print( f"{ row[ 0 ] }" )
-</code></pre>
+	database = "./puzzlewords.sqlite"
+
+	try:
+		conn = sqlite3.connect( database )
+	except Error as e:
+		print( e )
+		exit()
+
+	cursor = conn.cursor()
+
+	while True:
+
+		str = input( "\nEnter a Jumble word? " )
+
+		str = str.lower()
+
+		if ( str == 'q' ):
+			print( "\n" )
+			break
+		else:
+
+			str = re.findall("[\da-z]*", str)[0]
+
+			letters  = list( str )
+
+			str = "" . join( sorted( letters ) )
+
+			if ( len( str ) < 3 ):
+				print( "Come on guy ... at least three letters?" )
+
+			cursor.execute( f"SELECT word FROM wordlist WHERE sorted = '{ str }'" )
+
+			rows = cursor.fetchall()
+
+			if ( len( rows ) == 0 ):
+				print( "No solutions found!" )
+				continue
+
+			for row in rows:
+				print( f"{ row[ 0 ] }" )
+
+```
 
 Or copy the puzzlewords.sqlite file into your PHP web site, and you can use an HTML form to interact with it. (No doubt something similar will work with Javascript, coding language of the damned.)  For PHP, make sure that the sqlite interface is installed.
 
