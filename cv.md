@@ -138,13 +138,8 @@ Named one of the Top 500 authors in 2019. Also wrote two articles that ranked in
 Created [Qarma](https://github.com/lcorr8/qarma), an online platform to report and retrieve lost & found objects for travelers abroad.
 <br><br>
 
-## 💬 Languages
 
-**English**: Native <br>
-**German**: A2.2
-<br><br>
-
-## 👩🏼‍🎓 Education
+## 👩👨🏻‍🎓🏼‍🎓 Education
 
 **MBA - Quantitative Analysis** focused on statistics and econometrics<br>
 [The Pennsylvania State University](https://www.psu.edu/) - University Park, PA _(Sep 1978 - Nov 1979)_ <br>
