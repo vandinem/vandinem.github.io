@@ -1,8 +1,9 @@
-# Carolyn Stransky
+# Work in Progress ... based on CV created by Carolyn Stransky (https://workwithcarolyn.com/blog/digital-cv-guide)
+# Mark Van Dine
 
-_Software engineer (and sometimes still a journalist) based in Berlin, Germany_ <br>
+_Senior Business Intelligence Analyst based in Boston, MA, USA_ <br>
 
-[Email](mailto:hello@workwithcarolyn.com) / [Website](https://workwithcarolyn.com/) / [LinkedIn](https://www.linkedin.com/in/carolstran/) / [GitHub](https://github.com/carolstran/) / [Twitter](https://twitter.com/carolstran/) / [DEV](https://dev.to/carolstran/)
+[Email](mailto:mark.vandine@gmail.com) / [Website](https://workwithcarolyn.com/) / [LinkedIn](https://www.linkedin.com/in/mark-van-dine-807805/) / [GitHub](https://github.com/vandinem/) / [Twitter](https://twitter.com/carolstran/)
 
 ## 👩🏼‍💻 Technical Experience
 
